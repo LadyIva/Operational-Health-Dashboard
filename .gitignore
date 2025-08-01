@@ -1,0 +1,12 @@
+# Python virtual environments
+.venv/
+venv/
+
+# Byte-compiled files
+__pycache__/
+
+# macOS specific files
+.DS_Store
+
+# Streamlit config
+.streamlit/
