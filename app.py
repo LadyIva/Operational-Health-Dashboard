@@ -159,19 +159,18 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.header("How This Dashboard Delivers Real-World Value")
+    st.header("Dashboard Value Proposition")
+
     st.markdown(
         """
-    This Operational Health Dashboard is designed to empower your business with proactive insights, moving beyond reactive maintenance to **predict and prevent issues** across your entire facility.
+    This dashboard helps you shift from reactive maintenance to proactive prevention of issues by providing:
 
-    -   **Proactive Maintenance & Reduced Downtime:** By continuously monitoring sensor data from **multiple machines and your main power meter**, the dashboard identifies anomalies *before* they lead to critical failures. This allows your team to perform maintenance precisely when needed, significantly **reducing unexpected downtime** and extending asset lifespan.
-    -   **Optimized Resource Allocation:** Gain a holistic view of your equipment's health. Understand which machines are performing optimally and which require attention, enabling you to **allocate resources more efficiently** and prioritize maintenance efforts.
-    -   **Enhanced Operational Efficiency:** Detect subtle deviations in sensor readings that might indicate inefficiencies or early signs of wear. This allows for timely adjustments, ensuring your machinery operates at peak performance and **minimizing energy waste**.
-    -   **Data-Driven Decision Making:** Move away from guesswork. The dashboard provides **actionable, data-backed insights** into your operational health, supporting informed decisions that improve productivity, safety, and profitability.
-    -   **Comprehensive Facility Oversight:** Our service integrates data from various points across your facility, providing a **unified view of your entire operational health**. This comprehensive monitoring helps you maintain consistent performance and identify systemic issues.
+    -   **Proactive Maintenance & Uptime:** Identifies anomalies before they cause critical failures, reducing unexpected downtime and extending equipment lifespan.
+    -   **Optimized Operations:** Enables timely adjustments to improve efficiency and minimize energy waste.
+    -   **Data-Driven Decisions:** Provides actionable, data-backed insights to support informed decisions for improved productivity and safety.
+    -   **Comprehensive Oversight:** Gives you a unified view of your entire facility's operational health by integrating data from multiple sources.
     """
     )
-
 
 if "current_df" not in st.session_state:
     initial_row = full_data_df.head(1).copy()
