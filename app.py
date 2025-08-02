@@ -151,7 +151,6 @@ def check_ml_anomaly(row, model, features):
 st.title("Operational Health Dashboard")
 st.write("Live dashboard displaying sensor data and detecting anomalies in real-time.")
 
-# NEW: Notice below the subtitle
 st.info(
     "💡 This dashboard is a simulation demo to showcase the potential of our operational health service. The data is not live."
 )
@@ -251,6 +250,22 @@ def update_dashboard(kpi_ph, alert_ph, chart_ph, current_df, anomaly_count):
             st.success("✅ System Operating Normally.")
 
     with chart_ph.container():
+        # --- NEW: Moved information section to be right before the main chart ---
+        st.markdown("---")
+        st.header("How This Dashboard Delivers Real-World Value")
+        st.markdown(
+            """
+        This Operational Health Dashboard is designed to empower your business with proactive insights, moving beyond reactive maintenance to **predict and prevent issues** across your entire facility.
+
+        -   **Proactive Maintenance & Reduced Downtime:** By continuously monitoring sensor data from **multiple machines and your main power meter**, the dashboard identifies anomalies *before* they lead to critical failures. This allows your team to perform maintenance precisely when needed, significantly **reducing unexpected downtime** and extending asset lifespan.
+        -   **Optimized Resource Allocation:** Gain a holistic view of your equipment's health. Understand which machines are performing optimally and which require attention, enabling you to **allocate resources more efficiently** and prioritize maintenance efforts.
+        -   **Enhanced Operational Efficiency:** Detect subtle deviations in sensor readings that might indicate inefficiencies or early signs of wear. This allows for timely adjustments, ensuring your machinery operates at peak performance and **minimizing energy waste**.
+        -   **Data-Driven Decision Making:** Move away from guesswork. The dashboard provides **actionable, data-backed insights** into your operational health, supporting informed decisions that improve productivity, safety, and profitability.
+        -   **Comprehensive Facility Oversight:** Our service integrates data from various points across your facility, providing a **unified view of your entire operational health**. This comprehensive monitoring helps you maintain consistent performance and identify systemic issues.
+        """
+        )
+        st.markdown("---")
+
         st.subheader("Sensor Data Time Series")
         fig_main = px.line(
             current_df,
@@ -313,18 +328,3 @@ while st.session_state.current_row_index < len(full_data_df):
 # Final status message after the loop
 if st.session_state.current_row_index >= len(full_data_df):
     st.info("End of simulation. All data has been processed.")
-
-# NEW: Add information at the end of the dashboard
-st.markdown("---")
-st.header("How This Dashboard Delivers Real-World Value")
-st.markdown(
-    """
-This Operational Health Dashboard is designed to empower your business with proactive insights, moving beyond reactive maintenance to **predict and prevent issues** across your entire facility.
-
--   **Proactive Maintenance & Reduced Downtime:** By continuously monitoring sensor data from **multiple machines and your main power meter**, the dashboard identifies anomalies *before* they lead to critical failures. This allows your team to perform maintenance precisely when needed, significantly **reducing unexpected downtime** and extending asset lifespan.
--   **Optimized Resource Allocation:** Gain a holistic view of your equipment's health. Understand which machines are performing optimally and which require attention, enabling you to **allocate resources more efficiently** and prioritize maintenance efforts.
--   **Enhanced Operational Efficiency:** Detect subtle deviations in sensor readings that might indicate inefficiencies or early signs of wear. This allows for timely adjustments, ensuring your machinery operates at peak performance and **minimizing energy waste**.
--   **Data-Driven Decision Making:** Move away from guesswork. The dashboard provides **actionable, data-backed insights** into your operational health, supporting informed decisions that improve productivity, safety, and profitability.
--   **Comprehensive Facility Oversight:** Our service integrates data from various points across your facility, providing a **unified view of your entire operational health**. This comprehensive monitoring helps you maintain consistent performance and identify systemic issues.
-"""
-)
