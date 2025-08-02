@@ -151,6 +151,11 @@ def check_ml_anomaly(row, model, features):
 st.title("Operational Health Dashboard")
 st.write("Live dashboard displaying sensor data and detecting anomalies in real-time.")
 
+# NEW: Notice below the subtitle
+st.info(
+    "💡 This dashboard is a simulation demo to showcase the potential of our operational health service. The data is not live."
+)
+
 if "current_df" not in st.session_state:
     initial_row = full_data_df.head(1).copy()
     initial_row["Is_Rule_Anomaly"] = False
@@ -211,33 +216,36 @@ def update_dashboard(kpi_ph, alert_ph, chart_ph, current_df, anomaly_count):
                     use_container_width=True,
                 )
 
-            with st.expander("Show Latest Anomaly Chart"):
-                df_anomaly_window = current_df.loc[
-                    (current_df.index >= last_anomaly.name - pd.Timedelta(hours=2))
-                    & (current_df.index <= last_anomaly.name + pd.Timedelta(hours=2))
-                ]
-                fig_anomaly = px.line(
-                    df_anomaly_window,
-                    x=df_anomaly_window.index,
-                    y=["Power_kW", "Vibration", "Temperature"],
-                    title=f"Sensor Readings Around Anomaly at {last_anomaly.name.strftime('%Y-%m-%d %H:%M:%S')}",
-                )
-
-                fig_anomaly.add_trace(
-                    go.Scatter(
-                        x=[last_anomaly.name],
-                        y=[last_anomaly["Power_kW"]],
-                        mode="markers",
-                        marker=dict(color="red", size=15, symbol="x"),
-                        name="Anomaly Point",
+                with st.expander("Show Latest Anomaly Chart"):
+                    df_anomaly_window = current_df.loc[
+                        (current_df.index >= last_anomaly.name - pd.Timedelta(hours=2))
+                        & (
+                            current_df.index
+                            <= last_anomaly.name + pd.Timedelta(hours=2)
+                        )
+                    ]
+                    fig_anomaly = px.line(
+                        df_anomaly_window,
+                        x=df_anomaly_window.index,
+                        y=["Power_kW", "Vibration", "Temperature"],
+                        title=f"Sensor Readings Around Anomaly at {last_anomaly.name.strftime('%Y-%m-%d %H:%M:%S')}",
                     )
-                )
 
-                st.plotly_chart(
-                    fig_anomaly,
-                    use_container_width=True,
-                    key=f"anomaly_chart_{last_anomaly.name.isoformat()}_{st.session_state.current_row_index}",
-                )
+                    fig_anomaly.add_trace(
+                        go.Scatter(
+                            x=[last_anomaly.name],
+                            y=[last_anomaly["Power_kW"]],
+                            mode="markers",
+                            marker=dict(color="red", size=15, symbol="x"),
+                            name="Anomaly Point",
+                        )
+                    )
+
+                    st.plotly_chart(
+                        fig_anomaly,
+                        use_container_width=True,
+                        key=f"anomaly_chart_{last_anomaly.name.isoformat()}_{st.session_state.current_row_index}",
+                    )
 
         else:
             st.success("✅ System Operating Normally.")
@@ -305,3 +313,18 @@ while st.session_state.current_row_index < len(full_data_df):
 # Final status message after the loop
 if st.session_state.current_row_index >= len(full_data_df):
     st.info("End of simulation. All data has been processed.")
+
+# NEW: Add information at the end of the dashboard
+st.markdown("---")
+st.header("How This Dashboard Delivers Real-World Value")
+st.markdown(
+    """
+This Operational Health Dashboard is designed to empower your business with proactive insights, moving beyond reactive maintenance to **predict and prevent issues** across your entire facility.
+
+-   **Proactive Maintenance & Reduced Downtime:** By continuously monitoring sensor data from **multiple machines and your main power meter**, the dashboard identifies anomalies *before* they lead to critical failures. This allows your team to perform maintenance precisely when needed, significantly **reducing unexpected downtime** and extending asset lifespan.
+-   **Optimized Resource Allocation:** Gain a holistic view of your equipment's health. Understand which machines are performing optimally and which require attention, enabling you to **allocate resources more efficiently** and prioritize maintenance efforts.
+-   **Enhanced Operational Efficiency:** Detect subtle deviations in sensor readings that might indicate inefficiencies or early signs of wear. This allows for timely adjustments, ensuring your machinery operates at peak performance and **minimizing energy waste**.
+-   **Data-Driven Decision Making:** Move away from guesswork. The dashboard provides **actionable, data-backed insights** into your operational health, supporting informed decisions that improve productivity, safety, and profitability.
+-   **Comprehensive Facility Oversight:** Our service integrates data from various points across your facility, providing a **unified view of your entire operational health**. This comprehensive monitoring helps you maintain consistent performance and identify systemic issues.
+"""
+)
