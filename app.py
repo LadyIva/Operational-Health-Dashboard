@@ -171,7 +171,6 @@ with st.sidebar:
     -   **Comprehensive Facility Oversight:** Our service integrates data from various points across your facility, providing a **unified view of your entire operational health**. This comprehensive monitoring helps you maintain consistent performance and identify systemic issues.
     """
     )
-st.markdown("---")
 
 
 if "current_df" not in st.session_state:
