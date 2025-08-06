@@ -10,10 +10,13 @@ import os
 # --- Configuration ---
 st.set_page_config(layout="wide", page_title="S.I.L.K.E. Predictive Maintenance Demo")
 
-# Center the logo using columns
+# Center the logo and title using columns
 col1, col2, col3 = st.columns([1, 6, 1])
 with col2:
     st.image("silke_logo_transparent.png", width=400)
+    st.markdown("<h1 style='text-align: center;'>Predictive Maintenance Demo</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'>Live dashboard displaying sensor data and detecting anomalies in real-time.</h3>", unsafe_allow_html=True)
+
 
 DATA_POINT_INTERVAL = 1.0
 file_path = "maize_mill_simulated_sensor_data.csv"
@@ -154,10 +157,9 @@ def check_ml_anomaly(row, model, features):
 
 
 # --- 3. Streamlit UI Rendering and Simulation Logic ---
-st.title("S.I.L.K.E. Predictive Maintenance Demo")
-st.write("Live dashboard displaying sensor data and detecting anomalies in real-time.")
+# Title and write moved into the centered block above.
 
-# --- NEW: Sidebar content ---
+# --- Sidebar content ---
 with st.sidebar:
     st.header("About This Demo")
     st.info(
@@ -310,7 +312,7 @@ while st.session_state.current_row_index < len(full_data_df):
         if is_rule_anomaly or is_ml_anomaly:
             st.session_state.anomaly_count += 1
 
-        # Call the new function to update all UI elements
+        # Call the new function to update all dynamic UI elements
         update_dashboard(
             kpi_placeholder,
             alert_placeholder,
