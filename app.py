@@ -9,6 +9,10 @@ import os
 
 # --- Configuration ---
 st.set_page_config(layout="wide", page_title="S.I.L.K.E. Predictive Maintenance Demo")
+
+# Add the st.logo function call at the top of your script
+st.logo("silke_logo_transparent.png")
+
 DATA_POINT_INTERVAL = 1.0
 file_path = "maize_mill_simulated_sensor_data.csv"
 
@@ -153,8 +157,6 @@ st.write("Live dashboard displaying sensor data and detecting anomalies in real-
 
 # --- NEW: Sidebar content ---
 with st.sidebar:
-    # Add a logo
-    # st.image("silke_logo_transparent.png", use_column_width=True) 
     st.header("About This Demo")
     st.info(
         "💡 This dashboard showcases the potential of our AIoT solutions. It uses simulated data to demonstrate how we can predict equipment failure before it happens, ensuring seamless operations."
