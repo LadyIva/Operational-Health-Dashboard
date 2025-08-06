@@ -11,7 +11,7 @@ import os
 st.set_page_config(layout="wide", page_title="S.I.L.K.E. Predictive Maintenance Demo")
 
 # Add the st.logo function call at the top of your script
-st.logo("silke_logo_transparent.png")
+st.logo("silke_logo_transparent.png", size="large")
 
 DATA_POINT_INTERVAL = 1.0
 file_path = "maize_mill_simulated_sensor_data.csv"
