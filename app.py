@@ -8,7 +8,7 @@ import time
 import os
 
 # --- Configuration ---
-st.set_page_config(layout="wide", page_title="Operational Health Dashboard")
+st.set_page_config(layout="wide", page_title="S.I.L.K.E. Predictive Maintenance Demo")
 DATA_POINT_INTERVAL = 1.0
 file_path = "maize_mill_simulated_sensor_data.csv"
 
@@ -148,27 +148,28 @@ def check_ml_anomaly(row, model, features):
 
 
 # --- 3. Streamlit UI Rendering and Simulation Logic ---
-st.title("Operational Health Dashboard")
+st.title("S.I.L.K.E. Predictive Maintenance Demo")
 st.write("Live dashboard displaying sensor data and detecting anomalies in real-time.")
 
 # --- NEW: Sidebar content ---
 with st.sidebar:
-    st.header("Dashboard Information")
+    # Add a logo
+    # st.image("silke_logo_transparent.png", use_column_width=True) 
+    st.header("About This Demo")
     st.info(
-        "💡 This dashboard is a simulation demo to showcase the potential of our operational health service. The data is not live."
+        "💡 This dashboard showcases the potential of our AIoT solutions. It uses simulated data to demonstrate how we can predict equipment failure before it happens, ensuring seamless operations."
     )
 
     st.markdown("---")
-    st.header("Dashboard Value Proposition")
+    st.header("The Value Proposition")
 
     st.markdown(
         """
-    This dashboard helps you shift from reactive maintenance to proactive prevention of issues by providing:
+    Our solution helps you shift from reactive maintenance to proactive prevention of issues by providing:
 
-    -   **Proactive Maintenance & Uptime:** Identifies anomalies before they cause critical failures, reducing unexpected downtime and extending equipment lifespan.
-    -   **Optimized Operations:** Enables timely adjustments to improve efficiency and minimize energy waste.
-    -   **Data-Driven Decisions:** Provides actionable, data-backed insights to support informed decisions for improved productivity and safety.
-    -   **Comprehensive Oversight:** Gives you a unified view of your entire facility's operational health by integrating data from multiple sources.
+    -   **Predictive Maintenance & Uptime:** Our AI models identify anomalies before they cause critical failures, reducing unexpected downtime and extending equipment lifespan.
+    -   **Optimized Operations:** Timely adjustments and data-driven insights help you improve efficiency and minimize energy waste.
+    -   **Actionable Intelligence:** We provide a unified view of your entire facility’s operational health, turning complex data into actionable insights for informed decisions and improved safety.
     """
     )
 
@@ -267,7 +268,7 @@ def update_dashboard(kpi_ph, alert_ph, chart_ph, current_df, anomaly_count):
             st.success("✅ System Operating Normally.")
 
     with chart_ph.container():
-        st.subheader("Sensor Data Time Series")
+        st.subheader("Real-time Sensor Data Monitoring")
         fig_main = px.line(
             current_df,
             x=current_df.index,
