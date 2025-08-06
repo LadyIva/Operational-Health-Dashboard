@@ -10,8 +10,8 @@ import os
 # --- Configuration ---
 st.set_page_config(layout="wide", page_title="S.I.L.K.E. Predictive Maintenance Demo")
 
-# Add the st.logo function call at the top of your script
-st.logo("silke_logo_transparent.png", size="large")
+# Use st.image to place the logo at the top of the main dashboard area
+st.image("silke_logo_transparent.png", width=400)
 
 DATA_POINT_INTERVAL = 1.0
 file_path = "maize_mill_simulated_sensor_data.csv"
