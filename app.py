@@ -10,12 +10,14 @@ import os
 # --- Configuration ---
 st.set_page_config(layout="wide", page_title="S.I.L.K.E. Predictive Maintenance Demo")
 
-# Center the logo and title using columns
+# Center the logo using columns
 col1, col2, col3 = st.columns([1, 6, 1])
 with col2:
     st.image("silke_logo_transparent.png", width=400)
-    st.markdown("<h1 style='text-align: center;'>Predictive Maintenance Demo</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center;'>Live dashboard displaying sensor data and detecting anomalies in real-time.</h3>", unsafe_allow_html=True)
+
+# The titles are now outside the column block to revert to left-alignment
+st.title("Predictive Maintenance Demo")
+st.write("Live dashboard displaying sensor data and detecting anomalies in real-time.")
 
 
 DATA_POINT_INTERVAL = 1.0
@@ -157,7 +159,7 @@ def check_ml_anomaly(row, model, features):
 
 
 # --- 3. Streamlit UI Rendering and Simulation Logic ---
-# Title and write moved into the centered block above.
+# Titles are no longer centered using markdown.
 
 # --- Sidebar content ---
 with st.sidebar:
